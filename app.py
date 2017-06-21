@@ -28,7 +28,16 @@ def imagedownload(url):
         imageurl = "http://www.beautylegmm.com/" + image.img.attrs['src']
         filename = os.path.basename(imageurl)
         print('正在下载' + imagename)
-        urlretrieve(imageurl, '%s/%s' % (albumpath, filename))
+        try:
+            urlretrieve(imageurl, '%s/%s' % (albumpath, filename))
+        except:
+            print(imagename + '下载失败')
+            try:
+                print('重试下载' + imagename)
+                urlretrieve(imageurl, '%s/%s' % (albumpath, filename))
+            except:
+                print(imagename + '再次下载失败')
+
         print('下载完成')
 
 
