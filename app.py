@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from urllib.request import urlopen, urlretrieve
 from bs4 import BeautifulSoup
 import os
