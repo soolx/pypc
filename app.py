@@ -3,10 +3,17 @@ from bs4 import BeautifulSoup
 import os
 
 def htmlparser(url):
-    html = urlopen(url)
-    bsObj = BeautifulSoup(html, 'html.parser')
-    return bsObj
-
+    try:
+        html = urlopen(url)
+    except:
+        print(url + '打开失败')
+        try:
+            html = urlopen(url)
+        except:
+            print(url + '再试打开失败')
+    else:
+        bsObj = BeautifulSoup(html, 'html.parser')
+        return bsObj
 
 folder = 'image'
 def path(bsObj):
@@ -58,6 +65,7 @@ for i in range(1,71):
     else:
         bsObj = htmlparser("http://www.beautylegmm.com/index-%d.html" % i)
     albumlist = albumlist + bsObj.findAll('div', {'class':'post_weidaopic'})
+    print('完成第%d页索引' % i)
 
 print('写真集索引完成')
 
