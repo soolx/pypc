@@ -70,5 +70,5 @@ for i in range(1,71):
     print('完成第%d页索引' % i)
     print('开始下载第%d页写真集' % i)
     for album in albumlist:
-        albumurl = album.find('a').attrs['href']
-        albumparser(albumurl)
+    albumurl = album.find('a').attrs['href']
+    albumparser(albumurl)
