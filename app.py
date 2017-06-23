@@ -68,9 +68,7 @@ for i in range(1,71):
         bsObj = htmlparser("http://www.beautylegmm.com/index-%d.html" % i)
     albumlist = albumlist + bsObj.findAll('div', {'class':'post_weidaopic'})
     print('完成第%d页索引' % i)
-
-print('写真集索引完成')
-
-for album in albumlist:
-    albumurl = album.find('a').attrs['href']
-    albumparser(albumurl)
+    print('开始下载第%d页写真集' % i)
+    for album in albumlist:
+        albumurl = album.find('a').attrs['href']
+        albumparser(albumurl)
