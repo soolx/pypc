@@ -5,17 +5,15 @@ from bs4 import BeautifulSoup
 import os
 
 def htmlparser(url):
-    try:
-        html = urlopen(url)
-    except:
-        print(url + '打开失败')
+    while True:
         try:
-            html = urlopen(url)
+            html = urlopen(url, timeout=120)
         except:
-            print(url + '再试打开失败')
-    else:
-        bsObj = BeautifulSoup(html, 'html.parser')
-        return bsObj
+            print(url + '打开失败')
+        else:
+            bsObj = BeautifulSoup(html, 'html.parser')
+            return bsObj
+
 
 folder = 'image'
 def path(bsObj):
@@ -37,17 +35,13 @@ def imagedownload(url):
         imageurl = "http://www.beautylegmm.com/" + image.img.attrs['src']
         filename = os.path.basename(imageurl)
         print('正在下载' + imagename)
-        try:
-            urlretrieve(imageurl, '%s/%s' % (albumpath, filename))
-        except:
-            print(imagename + '下载失败')
+        while True:
             try:
-                print('重试下载' + imagename)
                 urlretrieve(imageurl, '%s/%s' % (albumpath, filename))
             except:
-                print(imagename + '再次下载失败')
-
-        print('下载完成')
+                print(imagename + '下载失败')
+            else:
+                print('下载完成')
 
 
 def albumparser(albumurl):
