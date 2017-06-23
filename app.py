@@ -45,10 +45,11 @@ def imagedownload(url):
                 urlretrieve(imageurl, '%s/%s' % (albumpath, filename))
                 print('下载完成')
                 success = True
-            except urllib.ContentTooShortError:
+            except:
                 attempts += 1
                 print(imagename + '第' + attempts + '次下载失败')
                 
+
 
 def albumparser(albumurl):
     bsObj = htmlparser(albumurl)
